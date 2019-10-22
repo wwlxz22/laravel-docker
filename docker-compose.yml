@@ -1,0 +1,45 @@
+web:
+    image: nginx:latest
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - ./code:/code
+        - ./default.conf:/etc/nginx/conf.d/default.conf
+        - ./ssl:/etc/nginx/ssl
+        - ./log:/etc/nginx/log
+    links:
+        - php
+        - mysql
+    restart: always
+
+php:
+    build: ./dockerfile/php
+    volumes:
+        - ./code:/code
+    ports:
+        - "9000:9000"
+    restart: always
+    links:
+       - mysql
+       - redis
+redis:
+    image: redis:alpine
+    ports: 
+        - "6379:6379"
+    restart: always   
+
+mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: xiaozhen0801@
+      MYSQL_DATABASE: b2b_store
+      MYSQL_USER: b2b
+      MYSQL_PASSWORD: xiaozhen0801!
+
+
