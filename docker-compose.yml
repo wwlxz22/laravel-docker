@@ -37,9 +37,9 @@ mysql:
       - ./db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: xiaozhen0801@
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: b2b_store
       MYSQL_USER: b2b
-      MYSQL_PASSWORD: xiaozhen0801!
+      MYSQL_PASSWORD: password
 
 

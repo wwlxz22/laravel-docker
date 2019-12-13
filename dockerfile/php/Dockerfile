@@ -1,4 +1,4 @@
-FROM php:7.2.3-fpm-alpine3.7
+FROM php:7.4-fpm-alpine3.10
 
 RUN echo 'http://mirrors.aliyun.com/alpine/latest-stable/main' > /etc/apk/repositories
 
@@ -8,7 +8,7 @@ ENV TIMEZONE Asia/Shanghai
 RUN apk add tzdata
 RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
 RUN echo $TIMEZONE > /etc/timezone 
-ENV PHPREDIS_VERSION 4.0.0
+ENV PHPREDIS_VERSION 5.1.1
 
 RUN docker-php-source extract && \
   curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz && \
